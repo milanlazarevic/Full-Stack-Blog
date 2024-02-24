@@ -15,9 +15,7 @@ const userSchema = new mongoose.Schema({
         max: 50,
     },
     password:{
-        type: String,
-        required: true,
-        min: 6
+        type: String
     },
     img:{
         type:String
@@ -57,5 +55,5 @@ const postSchema = new mongoose.Schema(
   );
 
 // if there already exists user table use it otherwise create new
-export const User = mongoose.models.User || mongoose.model("User", userSchema)
-export const Post = mongoose.models.Post || mongoose.model("Post", postSchema)
+export const User = mongoose.models?.User || mongoose.model("User", userSchema)
+export const Post = mongoose.models?.Post || mongoose.model("Post", postSchema)
