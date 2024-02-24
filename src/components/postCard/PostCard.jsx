@@ -5,7 +5,7 @@ import Link from "next/link";
 const PostCard = ({post}) => {
     // console.log(post)
     return ( 
-        <div className={styles.container}>
+        <div className={styles.container} >
             <div className={styles.top}>
             { <div className={styles.imgContainer}>
                 <Image src={post.img} alt="" fill className={styles.img}/>

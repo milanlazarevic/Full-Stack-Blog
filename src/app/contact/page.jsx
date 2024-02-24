@@ -5,6 +5,10 @@ import dynamic from "next/dynamic";
 // using dynamic import from nextjs without server side rendering
 
 // const HydrationTestNoSSR = dynamic(() => import("@/components/hydrationTest"), {ssr:false})
+export const metadata = {
+  title: "Contact Page",
+  description: "If you need any contact info you can reach via email",
+};
 
 export default function ContactPage(){
   // console.log("cao")

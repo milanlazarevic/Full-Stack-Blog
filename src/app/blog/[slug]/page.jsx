@@ -5,13 +5,27 @@ import { Suspense } from "react";
 import { getPost } from "@/lib/data";
 
 // FETCH DATA WITH AN API
-// const getData = async(slug) => {
-//     const data = await fetch(`https://jsonplaceholder.typicode.com/posts/${slug}`)
-//     if (!data.ok){
-//         throw new Error("There is an error in the process!")
-//     }
-//     return data.json()
-// }
+const getData = async(slug) => {
+    const data = await fetch(`http://localhost:3000/api/blogs/${slug}`)
+    if (!data.ok){
+        throw new Error("There is an error in the process!")
+    }
+    return data.json()
+}
+export const generateMetadata = async({params}) => {
+    const {slug} = params
+    // API
+    const blog = await getData(slug)
+
+    // WITHOUT API
+    // const blog = await getPost(slug)
+
+    return {
+        title: blog.title,
+        description: blog.desc
+    }
+}
+
 
 const BlogPost = async({params}) => {
     const {slug} = params
@@ -24,7 +38,9 @@ const BlogPost = async({params}) => {
     return ( 
         <div className={styles.container}>
             <div className={styles.imgContainer}>
-                <Image src={post.img} alt="" fill className={styles.img} />
+                {post &&
+                    <Image src={post.img} alt="" fill className={styles.img} />
+                }
             </div>
             <div className={styles.textContainer}>
                 <h1 className={styles.title}>{post.title}</h1>

@@ -4,36 +4,30 @@ import { getPosts } from "@/lib/data"
 
 
 // FETCH DATA WITH API
-// const getData = async () => {
-//     const data = await fetch("https://jsonplaceholder.typicode.com/posts", {cache:"no-cache"})
-//     // if i want content to load on certain period of time
-//     // const data = await fetch("https://jsonplaceholder.typicode.com/posts", {next:{revalidate:3600}})
+const getData = async () => {
+    const data = await fetch("http://localhost:3000/api/blogs", {cache:"no-cache"})
+    // if i want content to load on certain period of time
+    // const data = await fetch("https://jsonplaceholder.typicode.com/posts", {next:{revalidate:3600}})
 
-//     if(!data.ok){
-//         throw new Error("Something went wrong!")
-//     }
-//     return data.json()
+    if(!data.ok){
+        throw new Error("Something went wrong!")
+    }
+    return data.json()
 
-// }
+}
+
 
 
  const BlogPage = async ({params}) => {
-    // Fetch posts with api
-    // const post = {
-    //     "img": "https://images.pexels.com/photos/773471/pexels-photo-773471.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    //     "createdAt":"16.05.2003.",
-    //     "title": "My first blog post",
-    //     "body":"Body of my first blog",
-    //     "slug":"blog1",
-    // }
-
+    // fetch with api
+    const posts = await getData()
     
     // Fetch posts without api 
-    const posts = await getPosts()
+    // const posts = await getPosts()
     return(
         <div className={styles.container}>
             {posts.map((post) => (
-                <div className={styles.post} key={post.id}>
+                <div className={styles.post} key={post.title}>
                     <PostCard post={post}/>
                 </div>
             ))}
