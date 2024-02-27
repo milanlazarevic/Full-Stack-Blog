@@ -46,11 +46,14 @@ export const deletePost = async(formData) => {
 }
 
 export const addUser = async(prevState, formData) => {
-    const {username, email, password, img} = Object.fromEntries(formData)
+    const {username, email, password, img, isAdmin} = Object.fromEntries(formData)
+
+    const salt = await bcrypt.genSalt(10)
+    const hashedPassword = await bcrypt.hash(password, salt)
     try{
         connectToDb()
         const newUser = new User({
-            username, email, password, img
+            username, email, password:hashedPassword, img, isAdmin
         })
         await newUser.save()
         console.log("added succesfully")
