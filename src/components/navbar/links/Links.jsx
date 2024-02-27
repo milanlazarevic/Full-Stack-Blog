@@ -37,7 +37,7 @@ const Links = ({session}) => {
                 <>
                     {
                     session.user?.isAdmin && (
-                        <NavLink item={{title:"Admin", url: "./admin"}}/>
+                        <NavLink item={{title:"Admin", url: "/admin"}}/>
                         )
                     }
                     <form action={handleLogout}>
@@ -45,7 +45,7 @@ const Links = ({session}) => {
                     </form>
                 </>
             ) : (
-                <NavLink item={{title: "Login", url:"./login"}} />
+                <NavLink item={{title: "Login", url:"/login"}} />
             )}
         </div>
         <button className={styles.menuButton} onClick={() => setOpen((prev) => !prev)}>Menu</button>
